@@ -1,5 +1,46 @@
 var url = 'http://localhost:3000/'
 
+let formPaciente = document.getElementById('form_paciente')
+formPaciente.addEventListener('submit', async (e)=>{
+	e.preventDefault()
+	let select = document.getElementById('Sexo')
+	let opitons = select.options[select.selectedIndex].value
+	const dados = {
+		nome:document.getElementById('nome-completo').value,
+		data:document.getElementById('data-nascimento').value,
+		sexo:opitons,
+		cep:document.getElementById('logradouro').value,
+		numero:document.getElementById('numero').value,
+		complemento:document.getElementById('complemento').value,
+		telefone:document.getElementById('telefone').value
+	}
+	const url = 'https://localhost:7203/'
+	const req = await fetch(url + "pacientes",
+		{
+			'method': 'POST',
+			'redirect': 'follow',
+			'headers':
+			{
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify(dados)
+		})
+		buscarPacientes()
+	console.log(dados)
+})
+
+async function buscarPacientes(){
+	const url = 'https://localhost:7203/'
+	const req = await fetch(url + 'pacientes')
+	const res = req.json(); 
+
+	generateTable(res)
+}
+
+
+
+
 function cadastrar() {
 	//validacao de alguns dos inputs
 
@@ -118,6 +159,24 @@ function validaInput(id) {
 		return false
 	}
 }
+
+let cepInput = document.getElementById('cep')
+
+cepInput.addEventListener('blur', async (e)=>{
+	if(e.target.value.length == 8){
+		const req = await fetch('https://viacep.com.br/ws/' + e.target.value + '/json')
+		const res = await req.json()
+		if(!res.erro){
+			document.getElementById('logradouro').value = res.logradouro
+		}else{
+			alert('digita um cep certo cacete')
+		}
+	}else{
+		alert('cep invalido')
+	}
+})
+
+
 
 function getLogradouro() {
 	var getCep = document.getElementById('cep');

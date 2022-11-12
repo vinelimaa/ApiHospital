@@ -17,7 +17,9 @@
 			<button class="btn btn-outline-light bt3" onclick="">Sair</button>
 		</div>
 		<div class="forms">
-			<div class="form">	
+
+
+			<form class="form" id="form_paciente" method="post">	
 				<p for="nome-completo">Dados do Paciente</p>
 				<input class="form-control" id="nome-completo"   	placeholder="Nome Completo"      type="text"  	required   onblur="validaNome(this.id)"/>
 				<div style="display:flex">
@@ -29,15 +31,25 @@
 						<option value="outro">	 Outro    </option>
 					</select>
 				</div>
-				<input class="form-control" id="cep"             	placeholder="CEP"                type="number"   required onblur="getLogradouro()"/>
-				<input class="form-control" id="logradouro"     	placeholder="Logradouro"         type="text" 	 required/>
+				<input class="form-control" id="cep"             	placeholder="CEP"                type="number"  />
+				<input class="form-control" id="logradouro"     	placeholder="Logradouro"         type="text" value="" 	 required/>
 				<div style="display:flex">
 					<input class="form-control" id="numero"  	    placeholder="Número"             type="number"   required onblur="validaInput(this.id)" style="margin-right:5px;"/>
 					<input class="form-control" id="complemento" 	placeholder="Complemento"        type="text"     required onblur="validaInput(this.id)" style="margin-left:5px;"/>
 				</div>
 				<input class="form-control" id="telefone"    	    placeholder="Telefone"           type="tel"		 required onblur="validaInput(this.id)"/>
-			</div>
-			<div class="form">
+				<button class="btn btn-primary" type="submit" id="submitProcedimento">Cadastrar</button>
+			</form>
+
+			<table class="table table-hover table-responsive" id="tablePaciente">
+				
+			</table>
+			
+
+
+
+
+			<form class="form" id="form_internamento" >
 				<p for="data-int">Dados do Internamento</p>
 				<div style="display:flex">
 					<input class="form-control" id="data-int"  		placeholder="Data de Internamento" type="text"   required onfocus="(this.type='date')" onblur="validaData(this.id)" style="margin-right:5px;"/>
@@ -57,8 +69,15 @@
 					<option value="adm">			   Encerramento Administrativo</option>
 					<option value="obito">			   Óbito					  </option>
 				</select>
-			</div>
-			<div class="form">
+				<button class="btn btn-primary">Cadastrar Internamento</button>
+			</form>
+
+			<table class="table table-hover table-responsive" id="tableInternamento">
+				
+			</table>
+
+
+			<form class="form" id="form_procedimento">
 				<p for="codigo">Procedimentos</p>
 				<div style="display:flex">
 					<input class="form-control" id="codigo" 	placeholder="Código" 				type="number" required onblur=" getCodigo()" style="margin-right: 5px;"/>
@@ -69,11 +88,21 @@
 					<input class="form-control" id="medico"		placeholder="Médico"				type="text"   required onblur="validaInput(this.id)" style="margin-right: 5px"/>
 					<input class="form-control" id="cbo"		placeholder="CBO"					type="text"   required onblur="validaInput(this.id)" style="margin-left: 5px"/>
 				</div>
-				<button class="btn btn-outline-primary" onclick="adicionarProcedimento()">Adicionar</button>
-			</div>
-			<table class="table table-hover table-responsive">
+				<button class="btn btn-primary">Cadastrar Procedimento</button>
+			</form >
+
+
+
+
+			
+
+			<table class="table table-hover table-responsive" id="tableProcedimento">
 				
 			</table>
+
+
+
+
 			<div class="formBotao">
 				<button class="btn btn-outline-primary btSalvar" onclick="salvar()">Salvar</button>
 			</div>
