@@ -1,5 +1,5 @@
 <template>
-    <form class="form" id="form_paciente" method="post">	
+	<form class="form" id="form_paciente" method="post">	
 		<p for="cpf">Dados do Paciente</p>
 		<input class="form-control" id="cpf" placeholder="CPF" 		   		 type="text"  required  autocomplete="off" maxlength="14" onkeypress="mask_cpf()" style="width: 40vh;"/>
 		<input class="form-control" id="nome_completo"   	placeholder="Nome Completo"      type="text"  required/>

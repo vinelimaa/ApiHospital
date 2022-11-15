@@ -1,16 +1,9 @@
 <template>
-    <div>
-        <header>
-        <div class="wrapper">
-            <nav>
-                <RouterLink to="/">Home</RouterLink><br/>
-                <RouterLink to="/cadastar/paciente">cadastar paciente</RouterLink><br/>
-                <RouterLink to="/cadastar/internamento">cadastar internamento</RouterLink><br/>
-                <RouterLink to="/cadastar/procedimento">cadastar procedimento</RouterLink><br/>
-            </nav>
+    <div class="box">
+        <MenuLateral/>
+        <div>
+            <RouterView />
         </div>
-        </header>
-        <RouterView />
     </div>
 </template>
 

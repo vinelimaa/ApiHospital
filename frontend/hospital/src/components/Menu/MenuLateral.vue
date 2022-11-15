@@ -5,8 +5,9 @@
 				  Cadastrar
 				</button>
 				<ul class="dropdown-menu">
-					<a href="cadastrar.html" id="cadastro_paciente">Paciente</a>
-					<p id="cadastro_internamento" onclick="mostrarTela()" >Internamento</p>
+					<RouterLink to="/cadastar/paciente">cadastar paciente</RouterLink><br/>
+                    <RouterLink to="/cadastar/internamento">cadastar internamento</RouterLink><br/>
+                    <RouterLink to="/cadastar/procedimento">cadastar procedimento</RouterLink><br/>
 				</ul>
 			  </div>
 			  <div class="btn-group dropend">
@@ -14,17 +15,17 @@
 				  Listar Cadastros
 				</button>
 				<ul class="dropdown-menu">
-					<a href="cadastrar.html">Completos</a>
-					<a href="cadastrar.html">Pacientes</a>
-					<a href="cadastrar.html">Internamentos</a>
-					<a href="cadastrar.html">Procedimentos</a>
+					<RouterLink to="">Completos</RouterLink>
+					<RouterLink to="/cadastar/paciente">cadastar paciente</RouterLink><br/>
+                    <RouterLink to="/cadastar/internamento">cadastar internamento</RouterLink><br/>
+                    <RouterLink to="/cadastar/procedimento">cadastar procedimento</RouterLink><br/>
 				</ul>
 			  </div>
-			<img src="img.png">
+			<img src="../../assets/img/img.png"/>
 			<button class="btn btn-outline-light bt3" onclick="">Sair</button>
 		</div>
 </template>
 
 <script setup>
-
+	import { RouterLink } from 'vue-router';
 </script>

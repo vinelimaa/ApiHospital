@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h1>Cadastar internamento </h1>
+    <div class="forms">
         <FormInternamento />
     </div>
 

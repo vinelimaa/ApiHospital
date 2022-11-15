@@ -276,6 +276,7 @@ let buttonCadInter    = document.getElementById('submitInternamento')
 //Formulário de cadastro de internamentos
 inputIdPac.addEventListener('blur', async (e) => {
 	e.preventDefault()
+	
 });
 let formInternamento = document.getElementById('form_internamento')
 formInternamento.addEventListener('button', async (e) => {

@@ -26,7 +26,7 @@ const router = createRouter({
       path: '/cadastar/procedimento',
       name: 'procedimento',
       component: CadastrarProcedimento
-    }, 
+    },
   ]
 })
 
