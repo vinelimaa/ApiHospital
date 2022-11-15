@@ -10,7 +10,7 @@
 	position: relative;
 	margin-left: 0;
 	/* background-color: #ff4d4d; */
-	background-color: #60a3bc;
+	background-color: #3c6382;
 	height: auto;
 	width: 40vh;
 	transition: 0.5s;
@@ -54,7 +54,7 @@
 	text-align: center;
 }
 .dropdown-menu a:hover{
-	color: #60a3bc;
+	color: #eccc68;
 }
 .forms{
 	width: 100%;
@@ -109,7 +109,7 @@
 	cursor:pointer;
 }
 #cadastro_internamento:hover{
-	color: #60a3bc;
+	color: #eccc68;
 }
 #submitPaciente{
 	margin-top: 50px;
@@ -142,6 +142,16 @@ img{
 .select{
 	background-color: #60a3bc31;
 	font-size: 14px;
+}
+form .btPesquisar{
+	margin-left: 5px;
+	width: 40px;
+	height: 40px;
+	background-color: #3c6382;
+	color: #eccc68;
+}
+form .btPesquisar:hover{
+	color: white;
 }
 table{
 	display: none;

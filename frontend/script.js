@@ -127,100 +127,6 @@ function mostrarTela() {
 	botaoVisivel.style.display = 'flex'
 	botaoVisivel.style.flexDirection = 'column'
 }
-//Formulário de cadastro de internamentos
-let formInternamento = document.getElementById('form_internamento')
-formInternamento.addEventListener('submit', async (e) => {
-	e.preventDefault()
-
-	let selectCarater = document.getElementById('carater_atendimento')
-	let caraterOption = selectCarater.options[select.selectedIndex].value
-	let selectMotivo = document.getElementById('motivo_encerramento')
-	let motivoOption = selectMotivo.options[select.selectedIndex].value
-
-	const dados = {
-		dataInt: document.getElementById('data_int').value,
-		dataAlta: document.getElementById('data_alta').value,
-		leito: document.getElementById('leito').value,
-		cid: document.getElementById('cid').value,
-		carater_Atendimento: caraterOption,
-		motivo_Encerramento: motivoOption,
-		pacienteId: 1
-	}
-	console.log(JSON.stringify(dados))
-	const url = 'https://localhost:7203/cadastrar/paciente'
-	fetch(url,
-		{
-			'method': 'POST',
-			'redirect': 'follow',
-			'headers':
-			{
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			'body': JSON.stringify(dados)
-		})
-	console.log(dados)
-})
-//Formulário de cadastro de procedimentos
-// let formProcedimento = document.getElementById('form_procedimento')
-// formProcedimento.addEventListener('submit', async (e) => {
-// 	e.preventDefault()
-// 	const dados = {
-// 		medico: document.getElementById('medico').value,
-// 		medicoCBO: document.getElementById('cbo').value,
-// 		codigo_Procedimento: document.getElementById('codigo').value,
-// 		descProcedimento: document.getElementById('descricao').value,
-// 		qtdProcedimento: document.getElementById('qtd').value,
-// 		internamentoId: 1,
-// 		pacienteId: 1
-// 	}
-// 	console.log(JSON.stringify(dados))
-// 	const url = 'https://localhost:7203/cadastrar/paciente'
-// 	fetch(url,
-// 		{
-// 			'method': 'POST',
-// 			'redirect': 'follow',
-// 			'headers':
-// 			{
-// 				'Content-Type': 'application/json',
-// 				'Accept': 'application/json'
-// 			},
-// 			'body': JSON.stringify(dados)
-// 		})
-// 	console.log(dados)
-// })
-
-//Cria tabela com procedimentos adicionados
-function adicionarProcedimento() {
-
-	let procedimentos = [
-		{
-			'codigo': document.getElementById('codigo').value,
-			'qtd': document.getElementById('qtd').value,
-			'descricao': document.getElementById('descricao').value,
-			'medico': document.getElementById('medico').value,
-			'cbo': document.getElementById('cbo').value
-		}
-	]
-
-	if (procedimentos[0].codigo && procedimentos[0].qtd && procedimentos[0].descricao 
-		&& procedimentos[0].medico && procedimentos[0].cbo) {
-		
-		let table = document.getElementById("tableProcedimento");
-		let data = Object.keys(procedimentos[0]);
-		// generateTableHead(table, data);
-		generateTable(table, procedimentos);
-
-		let tableOn = document.getElementById("tableProcedimento");
-		tableOn.style.display = 'table'
-
-		document.getElementById('codigo').value = ''
-		document.getElementById('qtd').value = ''
-		document.getElementById('descricao').value = ''
-		document.getElementById('medico').value = ''
-		document.getElementById('cbo').value = ''
-	}
-}
 
 //Variáveis que irão guardar valores do banco de dados do paciente
 let getLastID; let getCpfDB; let getNomeDB; let getIdDB;  let getNascDB; let getOptionDB;
@@ -352,6 +258,118 @@ inputCpf.addEventListener('blur', async (e) => {
 		return false
 	}
 });
+
+//Variáveis que irão guardar valores do banco de dados do internamento
+let getLastIntID; let getDtIntDB; let getDtAltaDB; let getLeitoDB;  
+let getCidDB; let getCarAtDB; let getMotEncDB; let getPacienteId;
+
+//Associando variáveis aos elementos de input do cadastro do internamento
+let inputIdPac		  = document.getElementById('id_pac_internamento')
+let inputDtInt 		  = document.getElementById('data_int')
+let inputDtAlta 	  = document.getElementById('data_alta')
+let inputleito 		  = document.getElementById('leito')
+let inputCid 		  = document.getElementById('cid')
+let inputCarAt 		  = document.getElementById('carater_atendimento')
+let inputMotEnc		  = document.getElementById('motivo_encerramento')
+let buttonCadInter    = document.getElementById('submitInternamento')
+
+//Formulário de cadastro de internamentos
+inputIdPac.addEventListener('blur', async (e) => {
+	e.preventDefault()
+});
+let formInternamento = document.getElementById('form_internamento')
+formInternamento.addEventListener('button', async (e) => {
+	e.preventDefault()
+
+	let selectCarater = document.getElementById('carater_atendimento')
+	let caraterOption = selectCarater.options[select.selectedIndex].value
+	let selectMotivo = document.getElementById('motivo_encerramento')
+	let motivoOption = selectMotivo.options[select.selectedIndex].value
+
+	const dados = {
+		dataInt: document.getElementById('data_int').value,
+		dataAlta: document.getElementById('data_alta').value,
+		leito: document.getElementById('leito').value,
+		cid: document.getElementById('cid').value,
+		carater_Atendimento: caraterOption,
+		motivo_Encerramento: motivoOption,
+		pacienteId: 1
+	}
+	console.log(JSON.stringify(dados))
+	const url = 'https://localhost:7203/cadastrar/paciente'
+	fetch(url,
+		{
+			'method': 'POST',
+			'redirect': 'follow',
+			'headers':
+			{
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify(dados)
+		})
+	console.log(dados)
+})
+//Formulário de cadastro de procedimentos
+// let formProcedimento = document.getElementById('form_procedimento')
+// formProcedimento.addEventListener('submit', async (e) => {
+// 	e.preventDefault()
+// 	const dados = {
+// 		medico: document.getElementById('medico').value,
+// 		medicoCBO: document.getElementById('cbo').value,
+// 		codigo_Procedimento: document.getElementById('codigo').value,
+// 		descProcedimento: document.getElementById('descricao').value,
+// 		qtdProcedimento: document.getElementById('qtd').value,
+// 		internamentoId: 1,
+// 		pacienteId: 1
+// 	}
+// 	console.log(JSON.stringify(dados))
+// 	const url = 'https://localhost:7203/cadastrar/paciente'
+// 	fetch(url,
+// 		{
+// 			'method': 'POST',
+// 			'redirect': 'follow',
+// 			'headers':
+// 			{
+// 				'Content-Type': 'application/json',
+// 				'Accept': 'application/json'
+// 			},
+// 			'body': JSON.stringify(dados)
+// 		})
+// 	console.log(dados)
+// })
+
+//Cria tabela com procedimentos adicionados
+function adicionarProcedimento() {
+
+	let procedimentos = [
+		{
+			'codigo': document.getElementById('codigo').value,
+			'qtd': document.getElementById('qtd').value,
+			'descricao': document.getElementById('descricao').value,
+			'medico': document.getElementById('medico').value,
+			'cbo': document.getElementById('cbo').value
+		}
+	]
+
+	if (procedimentos[0].codigo && procedimentos[0].qtd && procedimentos[0].descricao 
+		&& procedimentos[0].medico && procedimentos[0].cbo) {
+		
+		let table = document.getElementById("tableProcedimento");
+		let data = Object.keys(procedimentos[0]);
+		// generateTableHead(table, data);
+		generateTable(table, procedimentos);
+
+		let tableOn = document.getElementById("tableProcedimento");
+		tableOn.style.display = 'table'
+
+		document.getElementById('codigo').value = ''
+		document.getElementById('qtd').value = ''
+		document.getElementById('descricao').value = ''
+		document.getElementById('medico').value = ''
+		document.getElementById('cbo').value = ''
+	}
+}
 
 async function buscarPacientes() {
 	const url = 'https://localhost:7203/'
