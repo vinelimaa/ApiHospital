@@ -242,7 +242,7 @@ inputCpf.addEventListener('blur', async (e) => {
 	e.preventDefault()
 	let select = document.getElementById('sexo')
 	if(inputCpf.value.length == 11) {
-		const url = 'https://localhost:7203/'
+		const url = 'https://localhost:5149/'
 		//Busca o paciente pelo cpf digitado
 		const req = await fetch(url + 'paciente/cpf/'+ inputCpf.value)
 		console.log(inputCpf.value)
