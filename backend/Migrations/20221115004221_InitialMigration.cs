@@ -20,7 +20,6 @@ namespace myAPI.Migrations
                     CID = table.Column<string>(type: "TEXT", nullable: true),
                     Carater_Atendimento = table.Column<string>(type: "TEXT", nullable: true),
                     Motivo_Encerramento = table.Column<string>(type: "TEXT", nullable: true),
-                    ProcedimentoId = table.Column<int>(type: "INTEGER", nullable: false),
                     PacienteId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -34,6 +33,7 @@ namespace myAPI.Migrations
                 {
                     PacienteId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Cpf = table.Column<string>(type: "TEXT", nullable: true),
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
                     DataNasc = table.Column<string>(type: "TEXT", nullable: true),
                     Sexo = table.Column<string>(type: "TEXT", nullable: true),
@@ -58,7 +58,9 @@ namespace myAPI.Migrations
                     MedicoCBO = table.Column<string>(type: "TEXT", nullable: true),
                     Codigo_Procedimento = table.Column<string>(type: "TEXT", nullable: true),
                     DescProcedimento = table.Column<string>(type: "TEXT", nullable: true),
-                    QtdProcedimento = table.Column<int>(type: "INTEGER", nullable: false)
+                    QtdProcedimento = table.Column<int>(type: "INTEGER", nullable: false),
+                    InternamentoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PacienteId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
