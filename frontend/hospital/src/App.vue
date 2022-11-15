@@ -1,9 +1,7 @@
 <template>
     <div class="box">
         <MenuLateral/>
-        <div>
             <RouterView />
-        </div>
     </div>
 </template>
 

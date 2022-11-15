@@ -5,9 +5,9 @@
 				  Cadastrar
 				</button>
 				<ul class="dropdown-menu">
-					<RouterLink to="/cadastar/paciente">cadastar paciente</RouterLink><br/>
-                    <RouterLink to="/cadastar/internamento">cadastar internamento</RouterLink><br/>
-                    <RouterLink to="/cadastar/procedimento">cadastar procedimento</RouterLink><br/>
+					<RouterLink to="/cadastar/paciente">Paciente</RouterLink><br/>
+                    <RouterLink to="/cadastar/internamento">Internamento</RouterLink><br/>
+                    <RouterLink to="/cadastar/procedimento">Procedimento</RouterLink><br/>
 				</ul>
 			  </div>
 			  <div class="btn-group dropend">
@@ -15,10 +15,9 @@
 				  Listar Cadastros
 				</button>
 				<ul class="dropdown-menu">
-					<RouterLink to="">Completos</RouterLink>
-					<RouterLink to="/cadastar/paciente">cadastar paciente</RouterLink><br/>
-                    <RouterLink to="/cadastar/internamento">cadastar internamento</RouterLink><br/>
-                    <RouterLink to="/cadastar/procedimento">cadastar procedimento</RouterLink><br/>
+					<RouterLink to="/pacientes">Pacientes</RouterLink><br/>
+                    <RouterLink to="/internamentos">Internamentos</RouterLink><br/>
+                    <RouterLink to="/procedimentos">Procedimentos</RouterLink><br/>
 				</ul>
 			  </div>
 			<img src="../../assets/img/img.png"/>
