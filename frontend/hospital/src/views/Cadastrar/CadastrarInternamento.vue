@@ -5,6 +5,6 @@
 
 </template>
 <script setup>
-    import FormInternamento from '../components/Forms/FormInternamento.vue'
+    import FormInternamento from '../../components/Forms/FormInternamento.vue'
 
 </script>

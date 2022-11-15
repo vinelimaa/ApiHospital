@@ -3,15 +3,17 @@
 	font-family: "Verdana", sans-serif;
 }
 .box{
-	height: 100vh;
+	/* height: 100vh; */
 	display: flex;
 }
 .menu{
 	position: relative;
 	margin-left: 0;
+	/* background-color: #ff4d4d; */
 	background-color: #3c6382;
 	height: 100vh;
-	width: 240px;
+	width: 40vh;
+	transition: 0.5s;
 }
 .menu a{
 	text-decoration: none;
@@ -49,11 +51,7 @@
 }
 .dropdown-menu{
 	background-color: #32516b;
-	padding-left: 10px;
-}
-.dropdown-menu a{
-	display: flex;
-	flex-direction: column;
+	text-align: center;
 }
 .dropdown-menu a:hover{
 	color: #eccc68;
@@ -61,6 +59,7 @@
 .forms{
 	width: 100%;
 }
+
 .form
 {
 	max-width: 800px;
@@ -152,7 +151,7 @@ form .btPesquisar{
 form .btPesquisar:hover{
 	color: white;
 }
-table{
+/* table{
 	display: none;
 	max-width: 800px;
 	box-shadow: 0 0 1px 0;
@@ -162,12 +161,12 @@ table{
 	height: fit-content;
 	text-align: center;
 	z-index: 1;
-}
+} */
 .editar, .apagar{
 	color: black;
 	width: 50px;
 }
-tr:hover{
+/* tr:hover{
 	background-color: #60a3bc31;
 }
 tr{
@@ -175,7 +174,7 @@ tr{
 }
 table td,th{
 	border: 1px solid rgba(128, 128, 128, 0.363);
-}
+} */
 .form-int
 {
 	/* display: none; */

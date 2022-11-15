@@ -191,6 +191,15 @@ namespace Trabalho
                 return "Internamento atualizado";
             });
 
+
+            app.MapGet("/deletar/paciente/{id}", (BaseHospital baseHospital, int id) =>
+            {
+                var paciente = baseHospital.Pacientes.Find(id);
+                baseHospital.Remove(paciente);
+                baseHospital.SaveChanges();
+                return "Procedimento deletado";
+            });
+
             //deletar Procedimento
             app.MapPost("/deletarProcedimento/{id}", (BaseHospital baseHospital, int id) =>
             {

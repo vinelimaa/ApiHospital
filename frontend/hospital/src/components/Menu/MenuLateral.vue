@@ -15,16 +15,16 @@
 				  Listar Cadastros
 				</button>
 				<ul class="dropdown-menu">
-					<RouterLink to="/pacientes">Pacientes</RouterLink><br/>
-                    <RouterLink to="/internamentos">Internamentos</RouterLink><br/>
-                    <RouterLink to="/procedimentos">Procedimentos</RouterLink><br/>
+					<li><RouterLink to="/listar/paciente">Paciente</RouterLink><br/></li>
+					<li><RouterLink to="/listar/procedimento">Procediemento</RouterLink><br/></li>
+					<li><RouterLink to="/listar/internamento">Internamento</RouterLink><br/></li>
 				</ul>
 			  </div>
-			<img src="../../assets/img/img.png"/>
+			<img src="../../assets/img/img.png">
 			<button class="btn btn-outline-light bt3" onclick="">Sair</button>
 		</div>
 </template>
 
 <script setup>
-	import { RouterLink } from 'vue-router';
+
 </script>
