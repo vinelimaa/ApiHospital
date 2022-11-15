@@ -39,10 +39,10 @@
 
 			<form class="form" id="form_paciente" method="post">	
 				<p for="cpf">Dados do Paciente</p>
-				<input class="form-control" id="cpf" 				placeholder="CPF" 		   type="text" autocomplete="off" maxlength="11" style="width: 40vh;"/>
+				<input class="form-control" id="cpf" 				placeholder="CPF" 		   		 type="text"  required  autocomplete="off" maxlength="14" onkeypress="mask_cpf()" style="width: 40vh;"/>
 				<input class="form-control" id="nome_completo"   	placeholder="Nome Completo"      type="text"  required/>
 				<div style="display:flex">
-					<input class="form-control" id="data_nascimento" placeholder="Data de Nascimento" type="date"   maxlength="8"	required   onblur="validaData(this.id)" style="margin-right:5px;"/>
+					<input class="form-control" id="data_nascimento" placeholder="Data de Nascimento" type="date" required  maxlength="8" onblur="validaData(this.id)" style="margin-right:5px;"/>
 					<select class="form-select select" id="sexo" onblur="validaSelect(this.id)" style="margin-left:5px;" required>
 						<option value="" id="selectSexo" disabled selected>Sexo</option>
 						<option value="masculino" id="masc">Masculino</option>

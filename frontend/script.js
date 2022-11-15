@@ -241,7 +241,7 @@ let buttonCadPaciente = document.getElementById('submitPaciente')
 inputCpf.addEventListener('blur', async (e) => {
 	e.preventDefault()
 	let select = document.getElementById('sexo')
-	if(inputCpf.value.length == 11) {
+	if(inputCpf.value.length == 14) {
 		const url = 'https://localhost:7203/'
 		//Busca o paciente pelo cpf digitado
 		const req = await fetch(url + 'paciente/cpf/'+ inputCpf.value)
@@ -317,14 +317,15 @@ inputCpf.addEventListener('blur', async (e) => {
 			formPaciente.addEventListener('submit', async (e) => {
 				e.preventDefault()
 				const dados = {
-					pacienteId: getLastID,
-					nome: inputNome.value,
-					dataNasc: inputNasc.value,
-					sexo: select.options[select.selectedIndex].value,
-					telefone: inputTel.value,
-					cep: inputCep.value,
-					logradouro: inputLog.value,
-					numero: inputNum.value,
+					pacienteId:  getLastID,
+					cpf: 		 inputCpf.value,
+					nome: 		 inputNome.value,
+					dataNasc: 	 inputNasc.value,
+					sexo: 		 select.options[select.selectedIndex].value,
+					telefone: 	 inputTel.value,
+					cep: 		 inputCep.value,
+					logradouro:  inputLog.value,
+					numero: 	 inputNum.value,
 					complemento: inputComp.value
 				}
 				console.log(JSON.stringify(dados))
