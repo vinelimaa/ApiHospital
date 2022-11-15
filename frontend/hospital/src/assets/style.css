@@ -48,12 +48,9 @@
 	z-index: 2;
 }
 .dropdown-menu{
+	position: relative;
 	background-color: #32516b;
-	padding-left: 10px;
-}
-.dropdown-menu a{
-	display: flex;
-	flex-direction: column;
+	padding-left: 20px;
 }
 .dropdown-menu a:hover{
 	color: #eccc68;
