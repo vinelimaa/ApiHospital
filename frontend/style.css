@@ -3,13 +3,14 @@
 	font-family: "Verdana", sans-serif;
 }
 .box{
+	/* height: 100vh; */
 	display: flex;
 }
 .menu{
 	position: relative;
 	margin-left: 0;
 	/* background-color: #ff4d4d; */
-	background-color: #60a3bc;
+	background-color: #3c6382;
 	height: auto;
 	width: 40vh;
 	transition: 0.5s;
@@ -28,14 +29,14 @@
 	width: 160px;
 	position: fixed;
 	left: 20px;
-	top: 50px;
+	top: 10vh;
 	text-align: center;
 	z-index: 1;
 }
 .menu .bt2{
 	width: 160px;
 	position: fixed;
-	top: 100px;
+	top: 20vh;
 	left: 20px;
 	text-align: center;
 	z-index: 1;
@@ -43,13 +44,23 @@
 .menu .bt3{
 	width: 160px;
 	position: fixed;
-	bottom: 50px;
+	bottom: 10vh;
 	left: 20px;
 	text-align: center;
-	z-index: 1;
+	z-index: 2;
+}
+.dropdown-menu{
+	background-color: #32516b;
+	text-align: center;
+}
+.dropdown-menu a:hover{
+	color: #eccc68;
 }
 .forms{
 	width: 100%;
+}
+#form_internamento, #form_procedimento, .botao_cadastrar {
+	display: none;
 }
 .form
 {
@@ -84,7 +95,7 @@
 .form button:active{
 	border-style: none;
 }
-.formBotao{
+.botao_cadastrar{
 	max-width: 800px;
 	position: relative;
 	margin: 30px auto;
@@ -93,7 +104,17 @@
 	text-align: center;
 	z-index: 1;
 }
-.formBotao .btSalvar{
+#cadastro_internamento{
+	color: #FFFFFF;
+	cursor:pointer;
+}
+#cadastro_internamento:hover{
+	color: #eccc68;
+}
+#submitPaciente{
+	margin-top: 50px;
+}
+#submit{
 	background-color: #3c6382;
 	color: #FFFFFF;
 	border: 0;
@@ -101,7 +122,7 @@
 	width: 50%;
 	float: left;
 }
-.btSalvar:hover{
+#submit:hover{
 	background-color: #32516b;
 }
 .form input,select,option
@@ -112,7 +133,7 @@
 	margin-bottom: 15px;
 }
 img{
-	top: 230px;
+	top: 40vh;
 	position: fixed;
 	height: 120px;
 	left: 40px;
@@ -121,6 +142,16 @@ img{
 .select{
 	background-color: #60a3bc31;
 	font-size: 14px;
+}
+form .btPesquisar{
+	margin-left: 5px;
+	width: 40px;
+	height: 40px;
+	background-color: #3c6382;
+	color: #eccc68;
+}
+form .btPesquisar:hover{
+	color: white;
 }
 table{
 	display: none;
@@ -132,6 +163,10 @@ table{
 	height: fit-content;
 	text-align: center;
 	z-index: 1;
+}
+.editar, .apagar{
+	color: black;
+	width: 50px;
 }
 tr:hover{
 	background-color: #60a3bc31;

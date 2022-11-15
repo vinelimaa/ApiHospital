@@ -1,76 +1,5 @@
 var url = 'http://localhost:3000/'
 
-function cadastrar() {
-	//validacao de alguns dos inputs
-
-	if (!validaNome('nome-completo')) {
-		return
-	}
-
-	if (!validaData('data-nascimento')) {
-		return
-	}
-
-	if (!validaSenha('senha')) {
-		return
-	}
-
-	if (!confirmaSenha('confirma-senha')) {
-		return
-	}
-
-	//construcao do json que vai no body da criacao de usuario	
-
-	let body =
-	{
-		'Cep': document.getElementById('cep').value,
-		'Cpf': document.getElementById('cpf').value,
-		'Complemento': document.getElementById('complemento').value,
-		'Email': document.getElementById('email').value,
-		'Logradouro': document.getElementById('logradouro').value,
-		'Nascimento': document.getElementById('data-nascimento').value,
-		'Nome': document.getElementById('nome-completo').value,
-		'Numero': document.getElementById('numero').value,
-		'Password': document.getElementById('senha').value
-	};
-
-	//envio da requisicao usando a FETCH API
-
-	//configuracao e realizacao do POST no endpoint "usuarios"
-	fetch(url + "usuarios",
-		{
-			'method': 'POST',
-			'redirect': 'follow',
-			'headers':
-			{
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			'body': JSON.stringify(body)
-		})
-		//checa se requisicao deu certo
-		.then((response) => {
-			if (response.ok) {
-				return response.text()
-			}
-			else {
-				return response.text().then((text) => {
-					throw new Error(text)
-				})
-			}
-		})
-		//trata resposta
-		.then((output) => {
-			console.log(output)
-			alert('Cadastro efetuado! :D')
-		})
-		//trata erro
-		.catch((error) => {
-			console.log(error)
-			alert('Não foi possível efetuar o cadastro! :(')
-		})
-}
-
 function validaNome(id) {
 	let divNome = document.getElementById(id)
 	if (divNome.value.trim().split(' ').length >= 2) {
@@ -82,7 +11,7 @@ function validaNome(id) {
 		return false
 	}
 }
-
+//Valida a data
 function validaData(id) {
 	let divData = document.getElementById(id)
 	if (divData.value.length > 0) {
@@ -94,10 +23,29 @@ function validaData(id) {
 		return false
 	}
 }
+function mask_cpf() {
+    var cpf = document.getElementById('cpf')
+    if (cpf.value.length == 3 || cpf.value.length == 7) {
+        cpf.value += "."
+    } else if (cpf.value.length == 11) {
+        cpf.value += "-"
+    }
+}
+
+function mask_phone() {
+    var telefone = document.getElementById('telefone')
+    if (telefone.value.length == 2) {
+        telefone.value += " "
+    } else if (telefone.value.length == 8) {
+        telefone.value += "-"
+    }
+}
+
+//Valida se os selects receberam algum dado
 function validaSelect(id) {
 	var select = document.getElementById(id);
 	var value = select.options[select.selectedIndex].value;
-	if(value.length > 0) {
+	if (value.length > 0) {
 		select.style.border = 0
 		return true
 	}
@@ -106,10 +54,10 @@ function validaSelect(id) {
 		return false
 	}
 }
-
+//Valida se os inputs receberam algum dado
 function validaInput(id) {
 	var input = document.getElementById(id)
-	if(input.value.length > 0) {
+	if (input.value.length > 0) {
 		input.style.border = 0
 		return true
 	}
@@ -118,27 +66,30 @@ function validaInput(id) {
 		return false
 	}
 }
+//valida o CEP
+let cepInput = document.getElementById('cep')
+let logInput = document.getElementById('logradouro');
 
-function getLogradouro() {
-	var getCep = document.getElementById('cep');
-	var getLog = document.getElementById('logradouro');
-	if(getCep.value.length > 0) {
-		fetch('https://viacep.com.br/ws/' + document.getElementById('cep').value + '/json')
-		.then(response => response.json())
-		.then((output) => {
-			document.getElementById('logradouro').value = output.logradouro
-		})
-		getCep.style.border = '0'
-		getLog.style.border = '0'
-		return true
+cepInput.addEventListener('blur', async (e) => {
+	if (e.target.value.length == 8) {
+		const req = await fetch('https://viacep.com.br/ws/' + e.target.value + '/json')
+		const res = await req.json()
+		if (!res.erro) {
+			document.getElementById('logradouro').value = res.logradouro
+			cepInput.style.border = '0'
+			logInput.style.border = '0'
+		} else {
+			alert('CEP inexistente!')
+			cepInput.style.border = '2px solid red'
+		}
+	} else {
+		cepInput.value = ''
+		logInput.value = ''
+		cepInput.style.border = '2px solid red'
 	}
-	else {
-		getCep.style.border = '2px solid red'
-		getLog.style.border = '2px solid red'
-		return false
-	}
-}
+})
 
+//Associa a descrição do procedimento ao código digitado
 function getCodigo() {
 	let pneumonia = "Tratamento de Pneumonias ou Influenza(Gripe)"
 	let sepse = "Tratamento de Outras Doenças Bacterianas"
@@ -158,14 +109,240 @@ function getCodigo() {
 
 		default: descricao
 			codigo.style.border = '2px solid red'
-			descricao.style.border = '2px solid red'
 			descricao.value = ''
 			return false
 	}
 }
+//Gambiarra para mostrar formulários de cadastro em SPA
+function mostrarTela() {
+	let pacienteInvisivel = document.getElementById('form_paciente')
+	pacienteInvisivel.style.display = 'none'
+	let internamentoVisivel = document.getElementById('form_internamento')
+	internamentoVisivel.style.display = 'flex'
+	internamentoVisivel.style.flexDirection = 'column'
+	let procedimentoVisivel = document.getElementById('form_procedimento')
+	procedimentoVisivel.style.display = 'flex'
+	procedimentoVisivel.style.flexDirection = 'column'
+	let botaoVisivel = document.getElementById('botao_cadastrar')
+	botaoVisivel.style.display = 'flex'
+	botaoVisivel.style.flexDirection = 'column'
+}
 
-function adicionarProcedimento() {
+//Variáveis que irão guardar valores do banco de dados do paciente
+let getLastID; let getCpfDB; let getNomeDB; let getIdDB;  let getNascDB; let getOptionDB;
+let getTelDB;  let getCepDB; let getLogDB;  let getNumDB; let getCompDB;  
+
+//Associando variáveis aos elementos de input do cadastro do paciente
+let inputCpf		  = document.getElementById('cpf')
+let inputNome 		  = document.getElementById('nome_completo')
+let inputNasc 		  = document.getElementById('data_nascimento')
+let inputTel 		  = document.getElementById('telefone')
+let inputCep 		  = document.getElementById('cep')
+let inputLog 		  = document.getElementById('logradouro')
+let inputNum 		  = document.getElementById('numero')
+let inputComp 		  = document.getElementById('complemento')
+let buttonCadPaciente = document.getElementById('submitPaciente')
+
+//Validação e envio de formulário de cadastro de pacientes
+inputCpf.addEventListener('blur', async (e) => {
+	e.preventDefault()
+	let select = document.getElementById('sexo')
+	if(inputCpf.value.length == 14) {
+		const url = 'https://localhost:7203/'
+		//Busca o paciente pelo cpf digitado
+		const req = await fetch(url + 'paciente/cpf/'+ inputCpf.value)
+		console.log(inputCpf.value)
+		const res = await req.json();
+		//Para cada registro encontrado, atribui o valor de cada elemento a uma variável
+		for (key in res) {
+			getCpfDB  = res[key].cpf
+			getIdDB   = res[key].pacienteId
+			getNomeDB = res[key].nome
+			getNascDB = res[key].dataNasc
+			getSexDB  = res[key].sexo
+			getTelDB  = res[key].telefone
+			getCepDB  = res[key].cep
+			getLogDB  = res[key].logradouro
+			getNumDB  = res[key].numero
+			getCompDB = res[key].complemento
+		}
+		//valida se o nome digitado já existe no banco de dados
+		if (getCpfDB == inputCpf.value) {
+			//Se sim, insere os valores do banco de dados nos inputs
+			inputNome.value = getNomeDB
+			document.getElementById('data_nascimento').value = getNascDB
+			let select = document.getElementById('sexo')
+			select.removeAttribute("selected");
+			switch(getSexDB) {
+				case 'masculino': let masculino = document.getElementById('masc')
+								  masculino.setAttribute("selected", true);
+								  break;
+				case 'feminino':  let feminino = document.getElementById('fem')
+								  feminino.setAttribute("selected", true);
+								  break;
+				case 'outro':	  let outro = document.getElementById('outro')
+								  outro.setAttribute("selected", true)
+								  break;
+			}
+			document.getElementById('cep').value 			  = getCepDB
+			document.getElementById('logradouro').value 	  = getLogDB
+			inputNum.value = getNumDB
+			document.getElementById('complemento').value 	  = getCompDB
+			document.getElementById('telefone').value 		  = getTelDB
+
+			buttonCadPaciente.innerHTML = 'Paciente já Cadastrado'
+			//Desabilita o botão de cadastro do paciente
+			buttonCadPaciente.setAttribute("disabled", "true")
+			buttonCadPaciente.style.backgroundColor = 'green'
+		}
+		else {
+			//Se o paciente não existe no banco de dados
+			//Limpa os inputs
+			inputNasc.value = ''
+			inputTel.value = ''
+			inputCep.value = ''
+			inputLog.value = ''
+			inputNum.value = ''
+			inputComp.value = ''
+
+			buttonCadPaciente.innerHTML = 'Cadastrar'
+			//Habilita o botão de cadastro do paciente
+			buttonCadPaciente.removeAttribute("disabled");
+			buttonCadPaciente.style.backgroundColor = '#3c6382'
+
+			//Busca o último ID do paciente cadastrado
+			const url = 'https://localhost:7203/'
+			const req = await fetch(url + 'ultimoId')
+			let res = await req.json();
+			//Atribui 1 ao valor do último ID
+			getLastID = res + 1;
+			console.log(getLastID)
+
+			//Envio de formulário do paciente
+			let formPaciente = document.getElementById('form_paciente')
+			formPaciente.addEventListener('submit', async (e) => {
+				e.preventDefault()
+				const dados = {
+					pacienteId:  getLastID,
+					cpf: 		 inputCpf.value,
+					nome: 		 inputNome.value,
+					dataNasc: 	 inputNasc.value,
+					sexo: 		 select.options[select.selectedIndex].value,
+					telefone: 	 inputTel.value,
+					cep: 		 inputCep.value,
+					logradouro:  inputLog.value,
+					numero: 	 inputNum.value,
+					complemento: inputComp.value
+				}
+				console.log(JSON.stringify(dados))
+				const url = 'https://localhost:7203/cadastrar/paciente'
+				fetch(url,
+					{
+						'method': 'POST',
+						'redirect': 'follow',
+						'headers':
+						{
+							'Content-Type': 'application/json',
+							'Accept': 'application/json'
+						},
+						'body': JSON.stringify(dados)
+					})
+				console.log(dados)
+				alert('Cadastro efetuado com sucesso!')
+			})
+		}
+	}
+	else {
+		console.log(inputCpf.value)
+		inputCpf.style.border = '2px solid red'
+		return false
+	}
+});
+
+//Variáveis que irão guardar valores do banco de dados do internamento
+let getLastIntID; let getDtIntDB; let getDtAltaDB; let getLeitoDB;  
+let getCidDB; let getCarAtDB; let getMotEncDB; let getPacienteId;
+
+//Associando variáveis aos elementos de input do cadastro do internamento
+let inputIdPac		  = document.getElementById('id_pac_internamento')
+let inputDtInt 		  = document.getElementById('data_int')
+let inputDtAlta 	  = document.getElementById('data_alta')
+let inputleito 		  = document.getElementById('leito')
+let inputCid 		  = document.getElementById('cid')
+let inputCarAt 		  = document.getElementById('carater_atendimento')
+let inputMotEnc		  = document.getElementById('motivo_encerramento')
+let buttonCadInter    = document.getElementById('submitInternamento')
+
+//Formulário de cadastro de internamentos
+inputIdPac.addEventListener('blur', async (e) => {
+	e.preventDefault()
 	
+});
+let formInternamento = document.getElementById('form_internamento')
+formInternamento.addEventListener('button', async (e) => {
+	e.preventDefault()
+
+	let selectCarater = document.getElementById('carater_atendimento')
+	let caraterOption = selectCarater.options[select.selectedIndex].value
+	let selectMotivo = document.getElementById('motivo_encerramento')
+	let motivoOption = selectMotivo.options[select.selectedIndex].value
+
+	const dados = {
+		dataInt: document.getElementById('data_int').value,
+		dataAlta: document.getElementById('data_alta').value,
+		leito: document.getElementById('leito').value,
+		cid: document.getElementById('cid').value,
+		carater_Atendimento: caraterOption,
+		motivo_Encerramento: motivoOption,
+		pacienteId: 1
+	}
+	console.log(JSON.stringify(dados))
+	const url = 'https://localhost:7203/cadastrar/paciente'
+	fetch(url,
+		{
+			'method': 'POST',
+			'redirect': 'follow',
+			'headers':
+			{
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify(dados)
+		})
+	console.log(dados)
+})
+//Formulário de cadastro de procedimentos
+// let formProcedimento = document.getElementById('form_procedimento')
+// formProcedimento.addEventListener('submit', async (e) => {
+// 	e.preventDefault()
+// 	const dados = {
+// 		medico: document.getElementById('medico').value,
+// 		medicoCBO: document.getElementById('cbo').value,
+// 		codigo_Procedimento: document.getElementById('codigo').value,
+// 		descProcedimento: document.getElementById('descricao').value,
+// 		qtdProcedimento: document.getElementById('qtd').value,
+// 		internamentoId: 1,
+// 		pacienteId: 1
+// 	}
+// 	console.log(JSON.stringify(dados))
+// 	const url = 'https://localhost:7203/cadastrar/paciente'
+// 	fetch(url,
+// 		{
+// 			'method': 'POST',
+// 			'redirect': 'follow',
+// 			'headers':
+// 			{
+// 				'Content-Type': 'application/json',
+// 				'Accept': 'application/json'
+// 			},
+// 			'body': JSON.stringify(dados)
+// 		})
+// 	console.log(dados)
+// })
+
+//Cria tabela com procedimentos adicionados
+function adicionarProcedimento() {
+
 	let procedimentos = [
 		{
 			'codigo': document.getElementById('codigo').value,
@@ -175,16 +352,17 @@ function adicionarProcedimento() {
 			'cbo': document.getElementById('cbo').value
 		}
 	]
-	
-	if(procedimentos[0].codigo && procedimentos[0].qtd && procedimentos[0].descricao && procedimentos[0].medico && procedimentos[0].cbo) {
-		let table = document.querySelector("table");
+
+	if (procedimentos[0].codigo && procedimentos[0].qtd && procedimentos[0].descricao 
+		&& procedimentos[0].medico && procedimentos[0].cbo) {
+		
+		let table = document.getElementById("tableProcedimento");
 		let data = Object.keys(procedimentos[0]);
 		// generateTableHead(table, data);
 		generateTable(table, procedimentos);
 
-		let tableOn = document.querySelector("table")
+		let tableOn = document.getElementById("tableProcedimento");
 		tableOn.style.display = 'table'
-
 
 		document.getElementById('codigo').value = ''
 		document.getElementById('qtd').value = ''
@@ -192,33 +370,30 @@ function adicionarProcedimento() {
 		document.getElementById('medico').value = ''
 		document.getElementById('cbo').value = ''
 	}
-	else {
-		alert('Campos obrigatórios em branco!')
-	}
 }
 
-// function generateTableHead(table, data) {
-// 	let thead = table.createTHead();
-// 	let row = thead.insertRow();
-// 	for (let key of data) {
-// 		let th = document.createElement("th");
-// 		let text = document.createTextNode(key);
-// 		th.appendChild(text);
-// 		row.appendChild(th);
-// 	}
-// }
+async function buscarPacientes() {
+	const url = 'https://localhost:7203/'
+	const req = await fetch(url + 'pacientes')
+	const res = req.json();
+
+	let tablePaciente = document.getElementById('tablePaciente')
+	tablePaciente.generateTable(res)
+}
+
+
 
 function generateTable(table, data) {
 	for (let element of data) {
 		let row = table.insertRow();
 		let buttonEditar = document.createElement("button")
-		buttonEditar.setAttribute('class', 'btn btn-warning')
+		buttonEditar.setAttribute('class', 'btn btn-warning editar')
 		buttonEditar.setAttribute('style', 'margin-right: 5px;')
-		buttonEditar.innerHTML = 'Editar'
+		buttonEditar.innerHTML = 'E'
 		let buttonRemover = document.createElement("button")
-		buttonRemover.setAttribute('class', 'btn btn-danger')
+		buttonRemover.setAttribute('class', 'btn btn-danger apagar')
 		buttonRemover.setAttribute('style', 'margin-left: 5px;')
-		buttonRemover.innerHTML = 'Remover'
+		buttonRemover.innerHTML = 'R'
 		for (key in element) {
 			let cell = row.insertCell();
 			let text = document.createTextNode(element[key]);
@@ -228,18 +403,18 @@ function generateTable(table, data) {
 		}
 	}
 }
-let table = document.querySelector("table");
+let table = document.getElementById("tableProcedimento");
 generateTableHead(table);
 
 function generateTableHead(table) {
 	let thead = table.createTHead();
 	let row = thead.insertRow();
+	// let id = document.createElement("th")
 	let codigo = document.createElement("th")
 	let qtd = document.createElement("th")
 	let descricao = document.createElement("th")
 	let medico = document.createElement("th")
 	let cbo = document.createElement("th")
-	let id = document.createElement("th")
 	let comandos = document.createElement("th")
 	let text0 = document.createTextNode('id')
 	let text = document.createTextNode('Código')
@@ -248,35 +423,21 @@ function generateTableHead(table) {
 	let text4 = document.createTextNode('Médico')
 	let text5 = document.createTextNode('CBO')
 	let text6 = document.createTextNode('Comandos')
-	id.appendChild(text0)
+	// id.appendChild(text0)
 	codigo.appendChild(text)
 	qtd.appendChild(text2)
 	descricao.appendChild(text3)
 	medico.appendChild(text4)
 	cbo.appendChild(text5)
 	comandos.appendChild(text6)
-	row.appendChild(id)
+	// row.appendChild(id)
 	row.appendChild(codigo)
 	row.appendChild(qtd)
 	row.appendChild(descricao)
 	row.appendChild(medico)
 	row.appendChild(cbo)
 	row.appendChild(comandos)
-	
 }
-function ativarMenu() {
-
-}
-
-
-
-
-
-
-
-
-
-
 
 function proximo() {
 	let ativar = document.getElementById('form-int')

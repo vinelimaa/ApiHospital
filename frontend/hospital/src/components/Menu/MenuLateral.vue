@@ -15,10 +15,9 @@
 				  Listar Cadastros
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="cadastrar.html">Completos</a></li>
-					<li><a href="cadastrar.html">Pacientes</a></li>
-					<li><a href="cadastrar.html">Internamentos</a></li>
-					<li><a href="cadastrar.html">Procedimentos</a></li>
+					<li><RouterLink to="/listar/paciente">Paciente</RouterLink><br/></li>
+					<li><RouterLink to="/listar/procedimento">Procediemento</RouterLink><br/></li>
+					<li><RouterLink to="/listar/internamento">Internamento</RouterLink><br/></li>
 				</ul>
 			  </div>
 			<img src="../../assets/img/img.png">

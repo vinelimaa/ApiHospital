@@ -16,9 +16,6 @@ namespace myAPI.Models
 		public string? Carater_Atendimento { get; set; }
 		public string? Motivo_Encerramento { get; set; }
 
-		[ForeignKey("ProcedimentoID")]
-		public int ProcedimentoId { get; set; }
-
 		[ForeignKey("PacienteID")]
 		public int PacienteId { get; set; }
 

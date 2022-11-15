@@ -10,7 +10,7 @@ using myAPI.Data;
 namespace myAPI.Migrations
 {
     [DbContext(typeof(BaseHospital))]
-    [Migration("20221111200300_InitialMigration")]
+    [Migration("20221115004221_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,9 +45,6 @@ namespace myAPI.Migrations
                     b.Property<int>("PacienteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ProcedimentoId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("InternamentoId");
 
                     b.ToTable("Internamentos");
@@ -63,6 +60,9 @@ namespace myAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Complemento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Cpf")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataNasc")
@@ -100,11 +100,17 @@ namespace myAPI.Migrations
                     b.Property<string>("DescProcedimento")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("InternamentoId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Medico")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MedicoCBO")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdProcedimento")
                         .HasColumnType("INTEGER");
