@@ -5,8 +5,9 @@
 				  Cadastrar
 				</button>
 				<ul class="dropdown-menu">
-					<a href="cadastrar.html" id="cadastro_paciente">Paciente</a>
-					<p id="cadastro_internamento" onclick="mostrarTela()" >Internamento</p>
+					<RouterLink to="/cadastar/paciente">Paciente</RouterLink><br/>
+                    <RouterLink to="/cadastar/internamento">Internamento</RouterLink><br/>
+                    <RouterLink to="/cadastar/procedimento">Procedimento</RouterLink><br/>
 				</ul>
 			  </div>
 			  <div class="btn-group dropend">
@@ -14,13 +15,13 @@
 				  Listar Cadastros
 				</button>
 				<ul class="dropdown-menu">
-					<a href="cadastrar.html">Completos</a>
-					<a href="cadastrar.html">Pacientes</a>
-					<a href="cadastrar.html">Internamentos</a>
-					<a href="cadastrar.html">Procedimentos</a>
+					<li><a href="cadastrar.html">Completos</a></li>
+					<li><a href="cadastrar.html">Pacientes</a></li>
+					<li><a href="cadastrar.html">Internamentos</a></li>
+					<li><a href="cadastrar.html">Procedimentos</a></li>
 				</ul>
 			  </div>
-			<img src="img.png">
+			<img src="../../assets/img/img.png">
 			<button class="btn btn-outline-light bt3" onclick="">Sair</button>
 		</div>
 </template>

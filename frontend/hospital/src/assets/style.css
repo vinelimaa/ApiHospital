@@ -11,7 +11,7 @@
 	margin-left: 0;
 	/* background-color: #ff4d4d; */
 	background-color: #3c6382;
-	height: auto;
+	height: 100vh;
 	width: 40vh;
 	transition: 0.5s;
 }
@@ -59,9 +59,7 @@
 .forms{
 	width: 100%;
 }
-#form_internamento, #form_procedimento, .botao_cadastrar {
-	display: none;
-}
+
 .form
 {
 	max-width: 800px;

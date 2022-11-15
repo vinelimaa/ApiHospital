@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Cadastar Procedimento </h1>
         <FormProcedimento />
     </div>
 

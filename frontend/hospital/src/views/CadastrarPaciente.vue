@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Cadastar paciente </h1>
         <FormPaciente/>
     </div>
 
