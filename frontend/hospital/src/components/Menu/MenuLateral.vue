@@ -12,7 +12,7 @@
 			  </div>
 			  <div class="btn-group dropend">
 				<button type="button" class="btn btn-outline-light dropdown-toggle bt2" data-bs-toggle="dropdown" aria-expanded="false">
-				  Listar Cadastros
+				  Listar
 				</button>
 				<ul class="dropdown-menu">
 					<li><RouterLink to="/listar/paciente">Paciente</RouterLink><br/></li>
@@ -20,11 +20,11 @@
 					<li><RouterLink to="/listar/internamento">Internamento</RouterLink><br/></li>
 				</ul>
 			  </div>
-			<img src="../../assets/img/img.png">
+			<RouterLink to="/"><img src="../../assets/img/img.png"/></RouterLink><br/>
 			<button class="btn btn-outline-light bt3" onclick="">Sair</button>
 		</div>
 </template>
 
 <script setup>
-
+	
 </script>

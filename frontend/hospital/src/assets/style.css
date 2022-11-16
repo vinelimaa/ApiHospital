@@ -1,10 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
 *
 {
 	font-family: "Verdana", sans-serif;
 }
 .box{
-	/* height: 100vh; */
+	height: 100vh;
 	display: flex;
+}
+.wellcome{
+	position: relative;
+	width: 100vw;
+	background-image: url('../assets/img/wellcome.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.wellcome h2{
+	position: relative;
+	border-radius: 15px;
+	width: 40%;
+	margin-top: 42vh;
+	height: 100px;
+	background-color: rgba(255, 255, 255, 0.1);
+	box-shadow: 1px 1px 20px 0px rgba(99, 99, 99, 0.8);
+	text-align: center;	
+}
+.wellcome p{
+	font-size: 30px;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	position: relative;
+	padding-top: 30px;
+	color: #3c6382;
+
+}
+.menu_superior{
+	position: relative;
+	margin-top: 0;
+	height: 30px;
+	background-color: rgba(60, 99, 130, 0.1);
+	width: 100%;
+	transition: 0.2s;
+	display: none;
+}
+.menu_superior:hover{
+	background-color: #3c6382;
 }
 .menu{
 	position: relative;
@@ -12,8 +52,7 @@
 	/* background-color: #ff4d4d; */
 	background-color: #3c6382;
 	height: 100vh;
-	width: 40vh;
-	transition: 0.5s;
+	width: 18vw;
 }
 .menu a{
 	text-decoration: none;
@@ -26,28 +65,28 @@
 	color: black;
 }
 .menu .bt1{
-	width: 160px;
+	width: 12%;
 	position: fixed;
-	left: 20px;
-	top: 10vh;
+	left: 1%;
+	top: 40px;
 	text-align: center;
 	z-index: 1;
 }
 .menu .bt2{
-	width: 160px;
+	width: 12%;
 	position: fixed;
-	top: 20vh;
-	left: 20px;
+	left: 1%;
+	top: 90px;
 	text-align: center;
 	z-index: 1;
 }
 .menu .bt3{
-	width: 160px;
+	width: 12%;
 	position: fixed;
-	bottom: 10vh;
-	left: 20px;
+	left: 1%;
+	bottom: 40px;
 	text-align: center;
-	z-index: 2;
+	z-index: 1;
 }
 .dropdown-menu{
 	position: relative;
@@ -55,18 +94,22 @@
 	text-align: center;
 }
 .dropdown-menu a:hover{
-	color: #eccc68;
+	color: #68d2ec;
 }
 .forms{
+	width: 82vw;
+	background-image: url('../assets/img/wellcome.png');
+	background-size: cover;
+	background-repeat: no-repeat;
 	width: 100%;
 }
-
 .form
 {
+	background-color: rgba(255, 255, 255,0.9);
 	max-width: 800px;
 	box-shadow: 0 0 1px 0;
 	position: relative;
-	margin: 30px auto;
+	margin: 3vh auto;
 	padding: 30px;
 	height: fit-content;
 	text-align: center;
@@ -75,6 +118,7 @@
 
 .form input,select
 {
+	font-family: 'Quicksand', sans-serif;
 	border: 0;
 	font-size: 14px;
 	outline: 0;
@@ -82,6 +126,7 @@
 	width: 100%;
 }
 .form button{
+	font-family: 'Quicksand', sans-serif;
 	/* background-color: #ff4d4d; */
 	background-color: #3c6382;
 	color: #FFFFFF;
@@ -94,7 +139,11 @@
 .form button:active{
 	border-style: none;
 }
+.form p{
+	font-family: 'Quicksand', sans-serif;
+}
 .botao_cadastrar{
+	font-family: 'Quicksand', sans-serif;
 	max-width: 800px;
 	position: relative;
 	margin: 30px auto;
@@ -112,6 +161,12 @@
 }
 #submitPaciente{
 	margin-top: 50px;
+}
+#LimparPaciente {
+	background-color: rgb(221, 190, 98);
+}
+#LimparPaciente:hover {
+	background-color: rgb(209, 178, 86);
 }
 #submit{
 	background-color: #3c6382;
@@ -132,11 +187,15 @@
 	margin-bottom: 15px;
 }
 img{
-	top: 40vh;
+	top: 40%;
 	position: fixed;
-	height: 120px;
-	left: 40px;
-	border-radius: 60px;
+	height: 23%;
+	left: 2%;
+	border-radius: 50%;
+	transition: 0.1s;
+}
+img:hover{
+	box-shadow: 0px 0px 4px 4px #68d2ec;
 }
 .select{
 	background-color: #60a3bc31;
@@ -151,6 +210,11 @@ form .btPesquisar{
 }
 form .btPesquisar:hover{
 	color: white;
+}
+.lista_pacientes {
+	position: relative;
+	display: table;
+	width: 800px;
 }
 /* table{
 	display: none;
@@ -212,3 +276,21 @@ table td,th{
 	box-sizing: border-box;
 	margin-bottom: 15px;
 }
+@media screen and (max-width: 992px) {
+	.menu {
+	  display: none;
+	}
+	.wellcome h2{
+		margin-left: 0;
+		width: 100%;
+	}
+  }
+  @media screen and (max-height: 500px) {
+	.menu {
+	  display: none;
+	}
+	.wellcome h2{
+		margin-left: 0;
+		width: 100%;
+	}
+  }

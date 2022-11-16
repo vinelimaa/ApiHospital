@@ -67,6 +67,15 @@ namespace Trabalho
                 baseHospital.SaveChanges();
                 return "Procedimento adicionado";
             });
+            app.MapGet("/internamento/paciente/{id}", (BaseHospital baseHospital, int id) => 
+            {
+                var internamentos = 
+                baseHospital.Internamentos
+                .Where(i => i.PacienteId == id)
+                .ToList();  
+
+                return internamentos;     
+            });
 
 			//pegar ultimo ID
 			app.MapGet("/ultimoId", (BaseHospital baseHospital) =>

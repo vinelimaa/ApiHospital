@@ -2,8 +2,8 @@
     <form class="form" id="form_paciente" >	
 		<p for="cpf">Dados do Paciente</p>
 		
-		<input class="form-control" v-model="cpf" placeholder="CPF" @blur="verificarCPF" type="text" required autocomplete="off" maxlength="14" style="width: 40vh;"/>
-		<input class="form-control" v-model="nome"   placeholder="Nome Completo"  type="text"  required/>
+		<input class="form-control" v-model="cpf"  placeholder="CPF" @blur="verificarCPF" @keypress="mask_cpf" type="text" required autocomplete="off" maxlength="14" style="width: 40vh;"/>
+		<input class="form-control" id="name" v-model="nome" placeholder="Nome Completo"  type="text"  required/>
 
 		<div style="display:flex">
 			<input class="form-control" v-model="data_nascimento" placeholder="Data de Nascimento" type="date" required  maxlength="8" style="margin-right:5px;"/>
@@ -22,10 +22,10 @@
 			<input class="form-control" v-model="numero" placeholder="Número" type="number" required  style="margin-right:5px;"/>
 			<input class="form-control" v-model="complemento" placeholder="Complemento" type="text"   style="margin-left:5px;"/>
 		</div>
-		<input class="form-control" v-model="telefone"  placeholder="Telefone" type="text" autocomplete="off" maxlength="13"  required/>
+		<input class="form-control" v-model="telefone"  placeholder="Telefone" type="text" @keypress="mask_phone" autocomplete="off" maxlength="13"  required/>
 		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="!editar" @click.prevent="cadastrarPaciente">Cadastrar</button>
-		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="editar" @click.prevent="editarPaciente">Editar</button>
-		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="editar" @click="limpar">Limpar</button>
+		<button class="btn btn-primary" type="submit" id="editarPaciente" v-if="editar" @click.prevent="editarPaciente">Editar</button>
+		<button class="btn btn-primary" type="submit" id="LimparPaciente" v-if="editar" @click="limpar" style="margin-top:5px;">Limpar</button>
 	</form>
 	
 </template>
@@ -45,6 +45,63 @@
 	let telefone = ref()
 	let editar = ref(false)
 
+	function validaNome() {
+		if (nome.value.trim().split(' ').length >= 2) {
+			nome.style.border = 0
+			return true
+		}
+		else {
+			nome.style.border = '2px solid red'
+			return false
+		}
+	}
+
+	function validaData() {
+		if (data_nascimento.value.length > 0) {
+			data_nascimento.style.border = 0
+			return true
+		}
+		else {
+			data_nascimento.style.border = '2px solid red'
+			return false
+		}
+	}
+	function mask_cpf() {
+		if (cpf.value.length == 3 || cpf.value.length == 7) {
+			cpf.value += "."
+		} else if (cpf.value.length == 11) {
+			cpf.value += "-"
+		}
+	}
+
+	function mask_phone() {
+		if (telefone.value.length == 2) {
+			telefone.value += " "
+		} else if (telefone.value.length == 8) {
+			telefone.value += "-"
+		}
+	}
+
+	function validaSelect() {
+		if (value.length > 0) {
+			sexo.value.style.border = 0
+			return true
+		}
+		else {
+			sexo.value.style.border = '2px solid red'
+			return false
+		}
+	}
+	function validaInput(id) {
+		if (id.value.length > 0) {
+			id.style.border = 0
+			return true
+		}
+		else {
+			id.style.border = '2px solid red'
+			return false
+		}
+	}
 	async function cadastrarPaciente(){
 		const url = 'https://localhost:7203/cadastrar/paciente';
 

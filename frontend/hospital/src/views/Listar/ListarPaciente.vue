@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <h1>Listar paciente</h1>
+    <div id="lista_pacientes">
         <button class="btn btn-primary" @click="listar">Listar Pacientes</button>
-        <table class="table table-hover" v-if="dados">
+        <table class="table table-hover table-responsive lista_pacientes" v-if="dados">
             <thead>
                 <tr>
                     <th v-for="value, index in dados[0] " :key="value">{{ index }}</th>

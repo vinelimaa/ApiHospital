@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="forms">
         <FormPaciente/>
     </div>
 
