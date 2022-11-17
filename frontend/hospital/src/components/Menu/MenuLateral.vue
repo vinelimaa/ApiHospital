@@ -15,12 +15,12 @@
 				  Listar
 				</button>
 				<ul class="dropdown-menu">
-					<li><RouterLink to="/listar/paciente">Paciente</RouterLink><br/></li>
-					<li><RouterLink to="/listar/procedimento">Procediemento</RouterLink><br/></li>
-					<li><RouterLink to="/listar/internamento">Internamento</RouterLink><br/></li>
+					<li><RouterLink to="/listar/paciente">Pacientes</RouterLink><br/></li>
+					<li><RouterLink to="/listar/internamento">Internamentos</RouterLink><br/></li>
+					<li><RouterLink to="/listar/procedimento">Procedimentos</RouterLink><br/></li>
 				</ul>
 			  </div>
-			<RouterLink to="/"><img src="../../assets/img/img.png"/></RouterLink><br/>
+			<RouterLink to="/wellcome"><img src="../../assets/img/img.png"/></RouterLink><br/>
 			<button class="btn btn-outline-light bt3" onclick="">Sair</button>
 		</div>
 </template>

@@ -1,20 +1,19 @@
 <template>
     <div>
-        <h1>Listar Procediemento</h1>
-        <button class="btn btn-primary" @click="listar">Listar Pacientes</button>
-        <table class="table table-hover" v-if="dados">
+        <h1>Listar Procedimentos</h1>
+        <table class="table table-hover procedimentos" v-if="dados" @load="listar">
             <thead>
                 <tr>
                     <th v-for="value, index in dados[0] " :key="value">{{ index }}</th>
-                    <th>Editar</th>
+                    <!-- <th>Editar</th> -->
                     <th>Apagar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="pacientes, index in dados" :key="index">
-                    <td v-for="paciente, index in pacientes" :key="index"> {{ paciente }}</td>
-                    <td><button class="btn btn-primary">Editar</button></td>
-                    <td><button class="btn btn-danger">Deletar</button></td>
+                <tr v-for="procedimentos, index in dados" :key="index">
+                    <td v-for="procedimento, index in procedimentos" :key="index"> {{ procedimento }}</td>
+                    <!-- <td><button class="btn btn-primary">Editar</button></td> -->
+                    <td><button class="btn btn-danger" @click="deletar" :id="procedimentos.procedimentoId">Deletar</button></td>
                 </tr>
             </tbody>
         </table>
@@ -33,6 +32,14 @@
         const res = await req.json()
       
         dados.value = res
+    }
+
+    async function deletar(data){
+        let id = data.target.id
+        const req = await fetch('https://localhost:7203/deletar/procedimento/' + id)
+        const res = await req.text();
+        alert(res)
+        listar()
     }
     
 </script>

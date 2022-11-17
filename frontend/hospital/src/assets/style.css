@@ -5,9 +5,11 @@
 	font-family: "Verdana", sans-serif;
 }
 .box{
-	height: 100vh;
+	min-height: 100vh;
+	max-height: max-content;
 	display: flex;
 }
+
 .wellcome{
 	position: relative;
 	width: 100vw;
@@ -51,7 +53,7 @@
 	margin-left: 0;
 	/* background-color: #ff4d4d; */
 	background-color: #3c6382;
-	height: 100vh;
+	height: auto;
 	width: 18vw;
 }
 .menu a{
@@ -96,8 +98,13 @@
 .dropdown-menu a:hover{
 	color: #68d2ec;
 }
+.formulario{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 4;
+}
 .forms{
-	width: 82vw;
 	background-image: url('../assets/img/wellcome.png');
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -152,6 +159,8 @@
 	text-align: center;
 	z-index: 1;
 }
+
+/* botoes */
 #cadastro_internamento{
 	color: #FFFFFF;
 	cursor:pointer;
@@ -162,11 +171,14 @@
 #submitPaciente{
 	margin-top: 50px;
 }
-#LimparPaciente {
-	background-color: rgb(221, 190, 98);
+#Limpar{
+	border: 2px solid #32516b;
+	background-color: white;
+	color: black;
 }
-#LimparPaciente:hover {
-	background-color: rgb(209, 178, 86);
+#Limpar:hover {
+	background-color: #60a3bc31;
+	color: grey;
 }
 #submit{
 	background-color: #3c6382;
@@ -179,6 +191,7 @@
 #submit:hover{
 	background-color: #32516b;
 }
+/* form */
 .form input,select,option
 {
 	/* background: #e2e2e2e2; */
@@ -206,15 +219,25 @@ form .btPesquisar{
 	width: 40px;
 	height: 40px;
 	background-color: #3c6382;
-	color: #eccc68;
 }
 form .btPesquisar:hover{
-	color: white;
+	background-color: #3c6382;
+}
+form .btPesquisar:focus{
+	box-shadow: 0px 0px 3px 3px #68d2ec;
+}
+.btPesquisar:active{
+	background-color: #3c6382;
 }
 .lista_pacientes {
 	position: relative;
-	display: table;
-	width: 800px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.lista_pacientes tbody{
+	width: max-content;
 }
 /* table{
 	display: none;

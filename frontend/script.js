@@ -403,6 +403,16 @@ function generateTable(table, data) {
 		}
 	}
 }
+
+let data = ["melao", "banana"];
+	let list = document.getElementById("list")
+	data.forEach((item)=>{
+			let li = document.createElement("li");
+			li.innerText = item;
+			list.appendChild(li);
+			console.log(li)
+		})	
+		
 let table = document.getElementById("tableProcedimento");
 generateTableHead(table);
 

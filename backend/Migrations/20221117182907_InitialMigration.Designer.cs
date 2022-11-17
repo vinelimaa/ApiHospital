@@ -10,7 +10,7 @@ using myAPI.Data;
 namespace myAPI.Migrations
 {
     [DbContext(typeof(BaseHospital))]
-    [Migration("20221115004221_InitialMigration")]
+    [Migration("20221117182907_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

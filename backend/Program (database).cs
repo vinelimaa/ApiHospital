@@ -29,7 +29,6 @@ namespace Trabalho
 
 			//adiciona politica permissiva de cross-origin ao builder
 			builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
-
             // Add services to the container.
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -67,15 +66,6 @@ namespace Trabalho
                 baseHospital.SaveChanges();
                 return "Procedimento adicionado";
             });
-            app.MapGet("/internamento/paciente/{id}", (BaseHospital baseHospital, int id) => 
-            {
-                var internamentos = 
-                baseHospital.Internamentos
-                .Where(i => i.PacienteId == id)
-                .ToList();  
-
-                return internamentos;     
-            });
 
 			//pegar ultimo ID
 			app.MapGet("/ultimoId", (BaseHospital baseHospital) =>
@@ -101,8 +91,14 @@ namespace Trabalho
                 return (baseHospital.Pacientes
                 .ToList());
             });
-            //listar todos os internamentos completos
+            //listar todos os internamentos
             app.MapGet("/internamentos", (BaseHospital baseHospital) =>
+            {
+                return (baseHospital.Internamentos
+                .ToList());
+            });
+            //listar todos os internamentos completos
+            app.MapGet("/internamentos/completos", (BaseHospital baseHospital) =>
             {
                 var innerJoinQuery =
                     from i in baseHospital.Internamentos
@@ -129,25 +125,21 @@ namespace Trabalho
                 return baseHospital.Pacientes
                 .Where(x => x.Nome == nome).ToList();
             });
+            app.MapGet("/internamento/paciente", (BaseHospital baseHospital) => 
+            {
+                var internamentos = 
+                    from i in baseHospital.Internamentos
+                    join p in baseHospital.Pacientes
+                    on i.PacienteId equals p.PacienteId
+                    select new { id = i.InternamentoId, pacienteid = p.PacienteId, nome = p.Nome, dataInt = i.DataInt};
+
+                return internamentos.ToList();
+            });
 
             //listar todos os procedimentos de um internamento específico
             // app.MapGet("/procedimentos/internamento/{id}", (BaseHospital baseHospital, int id) => {
             // 	 return baseHospital.Procedimentos
             // 	 .Where(x => x.InternamentoId == id).ToList();
-            // });
-
-            //listar todos os internamentos de um paciente específico
-            // app.MapGet("/internamentos/paciente/{id}", (BaseHospital baseHospital, int id) => {
-            // 	 return baseHospital.Internamentos
-            // 	 .Include(Internamento => Internamento.Pacientes)
-            // 	 .Include(Internamento => Internamento.Procedimentos)
-            // 	 .Where(x => x.PacienteId == id).ToList();
-            // });
-
-            // //listar todos os internamentos por mês
-            // app.MapGet("/internamentos/{competencia}", (BaseHospital baseHospital, String comp) => {
-            // 	 return baseHospital.Internamentos
-            // 	 .Where(x => x.Competencia == comp).ToList();
             // });
 
             //listar todos os procedimentos de um médico especifico
@@ -206,29 +198,23 @@ namespace Trabalho
                 var paciente = baseHospital.Pacientes.Find(id);
                 baseHospital.Remove(paciente);
                 baseHospital.SaveChanges();
-                return "Procedimento deletado";
+                return "Paciente deletado";
             });
 
             //deletar Procedimento
-            app.MapPost("/deletarProcedimento/{id}", (BaseHospital baseHospital, int id) =>
+            app.MapPost("/deletar/procedimento/{id}", (BaseHospital baseHospital, int id) =>
             {
-                var Procedimento = baseHospital.Procedimentos.Find(id);
-                baseHospital.Remove(Procedimento);
+                var procedimento = baseHospital.Procedimentos.Find(id);
+                baseHospital.Remove(procedimento);
                 baseHospital.SaveChanges();
                 return "Procedimento deletado";
             });
 
             //deletar Internamento
-            app.MapPost("/deletarInternamento/{id}", (BaseHospital baseHospital, int id) =>
+            app.MapPost("/deletar/internamento/{id}", (BaseHospital baseHospital, int id) =>
             {
-                var Internamento = baseHospital.Internamentos.Find(id);
-                baseHospital.Remove(Internamento);
-                baseHospital.SaveChanges();
-                var Paciente = baseHospital.Pacientes.Find(id);
-                baseHospital.Remove(Paciente);
-                baseHospital.SaveChanges();
-                var Procedimento = baseHospital.Procedimentos.Find(id);
-                baseHospital.Remove(Procedimento);
+                var internamento = baseHospital.Internamentos.Find(id);
+                baseHospital.Remove(internamento);
                 baseHospital.SaveChanges();
                 return "Internamento deletado";
             });

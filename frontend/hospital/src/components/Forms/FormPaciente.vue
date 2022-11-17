@@ -2,31 +2,50 @@
     <form class="form" id="form_paciente" >	
 		<p for="cpf">Dados do Paciente</p>
 		
-		<input class="form-control" v-model="cpf"  placeholder="CPF" @blur="verificarCPF" @keypress="mask_cpf" type="text" required autocomplete="off" maxlength="14" style="width: 40vh;"/>
-		<input class="form-control" id="name" v-model="nome" placeholder="Nome Completo"  type="text"  required/>
+		<input class="form-control" v-model="cpf"  placeholder="CPF" @keypress="mask_cpf" type="text" required="required" autocomplete="off" maxlength="14" style="width: 40vh;"/>
+		<input class="form-control" @focus="verificarCPF" id="name" v-model="nome" placeholder="Nome Completo"  type="text"  required/>
 
 		<div style="display:flex">
-			<input class="form-control" v-model="data_nascimento" placeholder="Data de Nascimento" type="date" required  maxlength="8" style="margin-right:5px;"/>
-			<select class="form-select select" v-model="sexo"  style="margin-left:5px;" required>
+			<input class="form-control" v-model="data_nascimento" placeholder="Data de Nascimento" type="date" required="required"  maxlength="8" style="margin-right:5px;"/>
+			<select class="form-select select" v-model="sexo"  style="margin-left:5px;" required="required">
 				<option value="" id="selectSexo" disabled selected>Sexo</option>
-				<option value="masculino" id="masc">Masculino</option>
-				<option value="feminino" id="fem">Feminino</option>
-				<option value="outro" id="outro">Outro</option>
+				<option value="Masculino" id="masc">Masculino</option>
+				<option value="Feminino" id="fem">Feminino</option>
+				<option value="Outro" id="outro">Outro</option>
 			</select>
 		</div>
 
-		<input class="form-control" v-model="cep" @blur="consultarCEP" placeholder="CEP" type="number"  required/>
-		<input class="form-control" v-model="logradouro" placeholder="Logradouro" type="text"  required/>
+		<input class="form-control" v-model="cep" @blur="consultarCEP" placeholder="CEP" type="number"  required="required"/>
+		<input class="form-control" v-model="logradouro" placeholder="Logradouro" type="text"  required="required"/>
 
 		<div style="display:flex">
-			<input class="form-control" v-model="numero" placeholder="Número" type="number" required  style="margin-right:5px;"/>
-			<input class="form-control" v-model="complemento" placeholder="Complemento" type="text"   style="margin-left:5px;"/>
+			<input class="form-control" v-model="numero" placeholder="Número" type="number" required="required"  style="margin-right:5px;"/>
+			<input class="form-control" v-model="complemento" placeholder="Complemento" type="text" equired="required"  style="margin-left:5px;"/>
 		</div>
-		<input class="form-control" v-model="telefone"  placeholder="Telefone" type="text" @keypress="mask_phone" autocomplete="off" maxlength="13"  required/>
-		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="!editar" @click.prevent="cadastrarPaciente">Cadastrar</button>
-		<button class="btn btn-primary" type="submit" id="editarPaciente" v-if="editar" @click.prevent="editarPaciente">Editar</button>
-		<button class="btn btn-primary" type="submit" id="LimparPaciente" v-if="editar" @click="limpar" style="margin-top:5px;">Limpar</button>
+		<input class="form-control" v-model="telefone"  placeholder="Telefone" type="text" @keypress="mask_phone" autocomplete="off" maxlength="13"  equired="required"/>
+		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="!editar" @click="cadastrarPaciente">Cadastrar</button>
+		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="editar" @click="editarPaciente">Salvar</button>
+		<button class="btn btn-primary" type="submit" id="Limpar" v-if="editar" @click="limpar" style="margin-top:5px;">Voltar</button>
+
+		<button class="btn btn-primary mt-2" @click.prevent="listar">Listar Pacientes</button>
+        <table class="table table-hover table-responsive lista_pacientes" v-if="dados">
+            <thead>
+                <tr>
+                    <th v-for="value, index in dados[0] " :key="value">{{ index }}</th>
+					<th>Editar</th>
+                    <th>Apagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="pacientes, index in dados"  :key="index" >
+                    <td v-for="paciente, index in pacientes" :key="index"> {{ paciente }}</td>
+					<td><button class="btn btn-primary" v-if="pacientes" :value="pacientes.cpf" @click="getDados">Editar</button></td>
+                    <td><button class="btn btn-danger" @click="deletar" :id="pacientes.pacienteId">Deletar</button></td>
+                </tr>
+            </tbody>
+        </table>
 	</form>
+	
 	
 </template>
 
@@ -72,6 +91,9 @@
 		} else if (cpf.value.length == 11) {
 			cpf.value += "-"
 		}
+		else{
+			return true
+		}
 	}
 
 	function mask_phone() {
@@ -105,7 +127,13 @@
 	async function cadastrarPaciente(){
 		const url = 'https://localhost:7203/cadastrar/paciente';
 
-		const dados = {
+		if(cpf.value == null || nome.value == null || data_nascimento.value == null || sexo.value == null ||
+		  telefone.value == null || cep.value == null || logradouro.value == null || numero.value == null || 
+		  complemento.value == null) {
+			alert('Campos Obrigatórios')
+		}
+		else {
+			const dados = {
 			cpf:cpf.value,
 			nome:nome.value,
 			dataNasc:data_nascimento.value,
@@ -131,8 +159,10 @@
 		alert(res)
 		limpar()
 	}
+}
 
-	async function editarPaciente(){
+	async function editarPaciente()	{
+
 		const url = 'https://localhost:7203/atualizar/paciente/' + id.value;
 		
 		const dados = {
@@ -147,6 +177,7 @@
 			numero:String(numero.value),
 			complemento:complemento.value,
 		}
+		console.log(dados)
 		
 		const req = await fetch (url, {
 			'method': 'POST',
@@ -186,15 +217,15 @@
 	}
 
 	function limpar(){
-			cpf.value = ''
-			nome.value = ''
-			data_nascimento.value = ''
-			sexo.value = '' 
-			cep.value = ''
-			logradouro.value = '' 
-			numero.value = ''
-			telefone.value =  ''
-			complemento.value = ''
+			cpf.value = null
+			nome.value = null
+			data_nascimento.value = null
+			sexo.value = null 
+			cep.value = null
+			logradouro.value = null 
+			numero.value = null
+			telefone.value =  null
+			complemento.value = null
 
 			editar.value = false
 	}
@@ -211,5 +242,24 @@
 		}
 	}
 
+	let dados  = ref();
+
+    let listar = async()=>{
+        const url = 'https://localhost:7203/pacientes'
+        const req = await fetch(url)
+        const res = await req.json()
+        dados.value = res
+    }
+
+    async function deletar(data){
+        let id = data.target.id
+        const req = await fetch('https://localhost:7203/deletar/paciente/' + id)
+        const res = await req.text();
+        alert(res)
+        listar()
+    }
+	function getDados(data){
+		cpf.value = data.target.value		
+	}
 
 </script>

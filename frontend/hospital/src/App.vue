@@ -1,15 +1,12 @@
 <template>
-    <div  class="box">
+    <div class="box">
         <MenuLateral />
-
         <RouterView />
     </div>
 </template>
 
 <script setup>
-import {RouterView } from 'vue-router'
+import {RouterLink, RouterView } from 'vue-router'
 import MenuLateral from './components/Menu/MenuLateral.vue';
-
-
 
 </script>
