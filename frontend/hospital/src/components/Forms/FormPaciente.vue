@@ -25,7 +25,7 @@
 		<input class="form-control" v-model="telefone"  placeholder="Telefone" type="text" @keypress="mask_phone" autocomplete="off" maxlength="13"  equired="required"/>
 		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="!editar" @click="cadastrarPaciente">Cadastrar</button>
 		<button class="btn btn-primary" type="submit" id="submitPaciente" v-if="editar" @click="editarPaciente">Salvar</button>
-		<button class="btn btn-primary" type="submit" id="Limpar" v-if="editar" @click="limpar" style="margin-top:5px;">Voltar</button>
+		<button class="btn btn-primary" type="submit" id="Limpar" v-if="editar"  style="margin-top:5px;">Voltar</button>
 
 		<button class="btn btn-primary mt-2" @click.prevent="listar">Listar Pacientes</button>
         <table class="table table-hover table-responsive lista_pacientes" v-if="dados">

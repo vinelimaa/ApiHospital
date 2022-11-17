@@ -2,7 +2,7 @@
     <form class="form">
 		<p for="id">Dados do Internamento</p>
 		<div style="display: flex;">
-			<input class="form-control" v-model="cpf"  placeholder="CPF" type="text" required="required" @blur="buscarPacienteCPF" style="width: 30vh;"/>
+			<input class="form-control" v-model="cpf"  placeholder="CPF" type="text" required="required" @keypress="mask_cpf" @blur="buscarPacienteCPF" style="width: 30vh;"/>
 			<input class="form-control" v-model="nome" type="text" style="margin-left:5px;" v-if="get" required="required"/>
 		</div>
 
@@ -129,13 +129,13 @@
 		limpar()
 	}
 
-	// function mask_cpf() {
-	// 	if (cpf.value.length == 3 || cpf.value.length == 7) {
-	// 		cpf.value += "."
-	// 	} else if (cpf.value.length == 11) {
-	// 		cpf.value += "-"
-	// 	}
-	// }
+	function mask_cpf() {
+		if (cpf.value.length == 3 || cpf.value.length == 7) {
+			cpf.value += "."
+		} else if (cpf.value.length == 11) {
+			cpf.value += "-"
+		}
+	}
 
 	async function buscarPacienteCPF(){
 		if(cpf.value){
@@ -173,8 +173,19 @@
 
     async function deletar(data){
         let id = data.target.id
-        const req = await fetch('https://localhost:7203/deletar/internamento/' + id)
+		const url = 'https://localhost:7203/deletar/internamento/' + id;
+        const req = await fetch (url, {
+			'method': 'POST',
+			'redirect': 'follow',
+			'headers':
+			{
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify(id)
+		}) 
         const res = await req.text();
+		console.log(id)
         alert(res)
         listar()
     }
