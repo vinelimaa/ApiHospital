@@ -1,12 +1,13 @@
-*
-{
+* {
 	font-family: "Verdana", sans-serif;
 }
-.box{
+
+.box {
 	/* height: 100vh; */
 	display: flex;
 }
-.menu{
+
+.menu {
 	position: relative;
 	margin-left: 0;
 	/* background-color: #ff4d4d; */
@@ -15,17 +16,21 @@
 	width: 40vh;
 	transition: 0.5s;
 }
-.menu a{
+
+.menu a {
 	text-decoration: none;
 	color: white;
 }
-.menu a:hover{
+
+.menu a:hover {
 	color: black;
 }
-.menu button:hover a{
+
+.menu button:hover a {
 	color: black;
 }
-.menu .bt1{
+
+.menu .bt1 {
 	width: 160px;
 	position: fixed;
 	left: 20px;
@@ -33,7 +38,8 @@
 	text-align: center;
 	z-index: 1;
 }
-.menu .bt2{
+
+.menu .bt2 {
 	width: 160px;
 	position: fixed;
 	top: 20vh;
@@ -41,7 +47,8 @@
 	text-align: center;
 	z-index: 1;
 }
-.menu .bt3{
+
+.menu .bt3 {
 	width: 160px;
 	position: fixed;
 	bottom: 10vh;
@@ -49,21 +56,27 @@
 	text-align: center;
 	z-index: 2;
 }
-.dropdown-menu{
+
+.dropdown-menu {
 	background-color: #32516b;
 	text-align: center;
 }
-.dropdown-menu a:hover{
+
+.dropdown-menu a:hover {
 	color: #eccc68;
 }
-.forms{
+
+.forms {
 	width: 100%;
 }
-#form_internamento, #form_procedimento, .botao_cadastrar {
+
+#form_internamento,
+#form_procedimento,
+.botao_cadastrar {
 	display: none;
 }
-.form
-{
+
+.form {
 	max-width: 800px;
 	box-shadow: 0 0 1px 0;
 	position: relative;
@@ -74,28 +87,32 @@
 	z-index: 1;
 }
 
-.form input,select
-{
+.form input,
+select {
 	border: 0;
 	font-size: 14px;
 	outline: 0;
 	padding: 10px;
 	width: 100%;
 }
-.form button{
+
+.form button {
 	/* background-color: #ff4d4d; */
 	background-color: #3c6382;
 	color: #FFFFFF;
 	border: 0;
 	width: 100%;
 }
-.form button:hover{
+
+.form button:hover {
 	background-color: #32516b;
 }
-.form button:active{
+
+.form button:active {
 	border-style: none;
 }
-.botao_cadastrar{
+
+.botao_cadastrar {
 	max-width: 800px;
 	position: relative;
 	margin: 30px auto;
@@ -104,17 +121,21 @@
 	text-align: center;
 	z-index: 1;
 }
-#cadastro_internamento{
+
+#cadastro_internamento {
 	color: #FFFFFF;
-	cursor:pointer;
+	cursor: pointer;
 }
-#cadastro_internamento:hover{
+
+#cadastro_internamento:hover {
 	color: #eccc68;
 }
-#submitPaciente{
+
+#submitPaciente {
 	margin-top: 50px;
 }
-#submit{
+
+#submit {
 	background-color: #3c6382;
 	color: #FFFFFF;
 	border: 0;
@@ -122,38 +143,46 @@
 	width: 50%;
 	float: left;
 }
-#submit:hover{
+
+#submit:hover {
 	background-color: #32516b;
 }
-.form input,select,option
-{
+
+.form input,
+select,
+option {
 	/* background: #e2e2e2e2; */
 	background-color: #60a3bc31;
 	box-sizing: border-box;
 	margin-bottom: 15px;
 }
-img{
+
+img {
 	top: 40vh;
 	position: fixed;
 	height: 120px;
 	left: 40px;
 	border-radius: 60px;
 }
-.select{
+
+.select {
 	background-color: #60a3bc31;
 	font-size: 14px;
 }
-form .btPesquisar{
+
+form .btPesquisar {
 	margin-left: 5px;
 	width: 40px;
 	height: 40px;
 	background-color: #3c6382;
 	color: #eccc68;
 }
-form .btPesquisar:hover{
+
+form .btPesquisar:hover {
 	color: white;
 }
-table{
+
+table {
 	display: none;
 	max-width: 800px;
 	box-shadow: 0 0 1px 0;
@@ -163,22 +192,18 @@ table{
 	height: fit-content;
 	text-align: center;
 	z-index: 1;
+	table-layout: fixed;
+	word-wrap: break-word;
 }
-.editar, .apagar{
+
+
+.editar,
+.apagar {
 	color: black;
 	width: 50px;
 }
-tr:hover{
-	background-color: #60a3bc31;
-}
-tr{
-	font-size: 14px;
-}
-table td,th{
-	border: 1px solid rgba(128, 128, 128, 0.363);
-}
-.form-int
-{
+
+.form-int {
 	/* display: none; */
 	max-width: 800px;
 	box-shadow: 0 0 1px 0;
@@ -189,26 +214,29 @@ table td,th{
 	text-align: center;
 	z-index: 1;
 }
-.form-int button,input,select
-{
+
+.form-int button,
+input,
+select {
 	border: 0;
 	font-size: 14px;
 	outline: 0;
 	padding: 10px;
 	width: 100%;
 }
-.form-int button
-{
+
+.form-int button {
 	background: #ff4d4d;
 	color: #FFFFFF;
 	cursor: pointer;
 }
-.form-int button:active
-{
+
+.form-int button:active {
 	background: #cc0066;
 }
-.form-int input,select
-{
+
+.form-int input,
+select {
 	background: #e2e2e2e2;
 	box-sizing: border-box;
 	margin-bottom: 15px;

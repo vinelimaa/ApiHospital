@@ -229,27 +229,6 @@ form .btPesquisar:focus{
 .btPesquisar:active{
 	background-color: #3c6382;
 }
-.lista_pacientes {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-
-.lista_pacientes tbody{
-	width: max-content;
-}
-/* table{
-	display: none;
-	max-width: 800px;
-	box-shadow: 0 0 1px 0;
-	position: relative;
-	margin: 30px auto;
-	padding: 30px;
-	height: fit-content;
-	text-align: center;
-	z-index: 1;
-} */
 .editar, .apagar{
 	color: black;
 	width: 50px;
@@ -299,7 +278,8 @@ table td,th{
 	box-sizing: border-box;
 	margin-bottom: 15px;
 }
-@media screen and (max-width: 992px) {
+
+/* @media screen and (max-width: 992px) {
 	.menu {
 	  display: none;
 	}
@@ -316,4 +296,4 @@ table td,th{
 		margin-left: 0;
 		width: 100%;
 	}
-  }
+  } */

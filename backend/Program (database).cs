@@ -125,6 +125,14 @@ namespace Trabalho
                 return baseHospital.Pacientes
                 .Where(x => x.Nome == nome).ToList();
             });
+
+            app.MapGet("/buscar/internanmento/{id}", (BaseHospital baseHospital, String id) => {
+                 return baseHospital.Internamentos
+                .Where(c => c.InternamentoId.ToString() == id).ToList();
+            });
+
+
+
             app.MapGet("/internamento/paciente", (BaseHospital baseHospital) => 
             {
                 var internamentos = 
@@ -147,6 +155,12 @@ namespace Trabalho
             {
                 return baseHospital.Procedimentos
                 .Where(x => x.Medico == nome).ToList();
+            });
+
+            app.MapGet("/buscar/procedimento/{id}", (BaseHospital baseHospital, int id) =>
+            {
+                return baseHospital.Procedimentos
+                .Where(x => x.ProcedimentoId == id).ToList();
             });
 
             //atualizar Paciente
@@ -179,7 +193,7 @@ namespace Trabalho
             });
 
             //atualizar Internamento
-            app.MapPost("/atualizarInternamento/{id}", (BaseHospital baseHospital, Internamento InternamentoAtualizado, int id) =>
+            app.MapPost("/atualizar/internamento/{id}", (BaseHospital baseHospital, Internamento InternamentoAtualizado, int id) =>
             {
                 var Internamento = baseHospital.Internamentos.Find(id);
                 Internamento.DataInt = InternamentoAtualizado.DataInt;
