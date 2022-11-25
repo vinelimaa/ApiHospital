@@ -2542,11 +2542,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vinic\\Desktop\\ApiHospital\\backend\\myAPI.csproj",
+      "projectUniqueName": "C:\\Users\\vinic\\Desktop\\dev\\ApiHospital\\backend\\myAPI.csproj",
       "projectName": "myAPI",
-      "projectPath": "C:\\Users\\vinic\\Desktop\\ApiHospital\\backend\\myAPI.csproj",
+      "projectPath": "C:\\Users\\vinic\\Desktop\\dev\\ApiHospital\\backend\\myAPI.csproj",
       "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vinic\\Desktop\\ApiHospital\\backend\\obj\\",
+      "outputPath": "C:\\Users\\vinic\\Desktop\\dev\\ApiHospital\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vinic\\AppData\\Roaming\\NuGet\\NuGet.Config"

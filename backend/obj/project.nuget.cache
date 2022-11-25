@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qSMeH6TfUQeN1Kk8tz5Wdc/UUQHnZgkD8tF/FuQP51fuDbfSAdvdOgT2LRqEkfs+czgVDIwAOxfUBx+xYuT3/Q==",
+  "dgSpecHash": "gQYQm2M4hIc3dCVjaGaSHaR1CHcKxvxFstWhyDnKytayRBqFi5LUuZfYJA3MOKbKlUCxSukuqHHNy5NFXXCXVQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vinic\\Desktop\\ApiHospital\\backend\\myAPI.csproj",
+  "projectFilePath": "C:\\Users\\vinic\\Desktop\\dev\\ApiHospital\\backend\\myAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vinic\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.0\\microsoft.data.sqlite.core.6.0.0.nupkg.sha512",

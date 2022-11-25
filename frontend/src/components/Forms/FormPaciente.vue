@@ -104,14 +104,17 @@ function validaData() {
 	}
 }
 function mask_cpf() {
-	if (cpf.value.length == 3 || cpf.value.length == 7) {
+	for(var i=1; i<=cpf.value.length; i++) {
+		if (cpf.value.length == 3 || cpf.value.length == 7) {
 		cpf.value += "."
-	} else if (cpf.value.length == 11) {
-		cpf.value += "-"
+		} else if (cpf.value.length == 11) {
+			cpf.value += "-"
+		}
+		else {
+			return true
+		}
 	}
-	else {
-		return true
-	}
+	
 }
 
 function mask_phone() {
